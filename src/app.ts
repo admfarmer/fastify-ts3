@@ -72,7 +72,7 @@ app.register(require('fastify-cors'), {})
 app.register(require('./plugins/db'), {
   connectionName: 'mysql',
   options: {
-    client: 'mysql2',
+    client: 'mysql',
     connection: {
       host: process.env.DB_HOST || 'localhost',
       user: process.env.DB_USER || 'root',
@@ -93,11 +93,11 @@ app.register(require('./plugins/db'), {
   options: {
     client: 'mysql2',
     connection: {
-      host: 'localhost',
-      user: 'root',
-      port: 3306,
-      password: '789124',
-      database: 'test2',
+      host: process.env.DB_HOST || 'localhost',
+      user: process.env.DB_USER || 'root',
+      port: Number(process.env.DB_PORT) || 3306,
+      password: process.env.DB_PASSWORD || '',
+      database: process.env.DB_NAME || 'test',
     },
     pool: {
       min: 0,
